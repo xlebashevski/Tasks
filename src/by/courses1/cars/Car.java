@@ -1,47 +1,50 @@
 package by.courses1.cars;
 
-public class Car {
+import java.util.List;
+
+public abstract class Car {
     private String color;
-    private String[] listOfOptions;
-    private final String MODEL;
-    private final int YEAR;
+    private List<String> options;
+    private final int year;
     private int wheelSize;
-    private final double ENGINE_VOLUME;
+    private final double engineVolume;
 
 
-    Car(String color, String[] listOfOptions, String MODEL, int YEAR, int wheelSize, double ENGINE_VOLUME) {
+    public Car(String color, List<String> options, int year, int wheelSize, double engineVolume) {
         this.color = color;
-        this.listOfOptions = listOfOptions;
-        this.MODEL = MODEL;
-        this.YEAR = YEAR;
+        this.options = options;
+        this.year = year;
         this.wheelSize = wheelSize;
-        this.ENGINE_VOLUME = ENGINE_VOLUME;
+        this.engineVolume = engineVolume;
     }
 
-    Car(String color, String MODEL, int YEAR, int wheelSize, double ENGINE_VOLUME) {
-      this(color, null, MODEL, YEAR, wheelSize, ENGINE_VOLUME);
+    public Car(String color, int year, int wheelSize, double engineVolume) {
+        this(color, null, year, wheelSize, engineVolume);
     }
 
-    public void printCar(){
+
+    public abstract Model getModel();
+
+    public void printCar() {
         System.out.println("Цвет " + color);
-        System.out.println("Модель " + MODEL);
-        System.out.println("Год " + YEAR);
+        System.out.println("Модель " + getModel().getValue());
+        System.out.println("Год " + year);
         System.out.println("Размер колёс " + wheelSize);
-        System.out.println("Объём двигателя " + ENGINE_VOLUME);
-         System.out.println("Список опций: ");
-        for(int i = 0; i < listOfOptions.length; i++) {
-            System.out.print(listOfOptions[i] + ", ");
+        System.out.println("Объём двигателя " + engineVolume);
+        System.out.println("Список опций: ");
+        for (String option : options) {
+            System.out.print(option + ", ");
         }
         System.out.println();
         System.out.println();
     }
 
-    public void setColor(String color){
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public void setListOfOptions(String[] listOfOptions) {
-        this.listOfOptions = listOfOptions;
+    public void setOptions(List<String> options) {
+        this.options = options;
     }
 
     public void setWheelSize(int wheelSize) {
@@ -52,16 +55,13 @@ public class Car {
         return color;
     }
 
-    public String[] getListOfOptions() {
-        return listOfOptions;
+    public List<String> getOptions() {
+        return options;
     }
 
-    public String getModel() {
-        return MODEL;
-    }
 
     public int getYear() {
-        return YEAR;
+        return year;
     }
 
     public int getWheelSize() {
@@ -69,7 +69,7 @@ public class Car {
     }
 
     public double getEngineVolume() {
-        return ENGINE_VOLUME;
+        return engineVolume;
     }
 }
 
