@@ -21,7 +21,7 @@ public class Salon {
 
     public Car createCarOrder(String color, List<String> options,
                               Model model, int year, int wheelSize, double engineVolume) {
-        for (Factory factory : Factories.getInstance()) {
+        for (Factory factory : Factories.getFactories()) {
             if (factory.getModels().contains(model)) {
                 return factory.createCar(color, options, model, year, wheelSize, engineVolume);
             }
@@ -31,7 +31,7 @@ public class Salon {
 
     public Car getMostSuitableCar(String color, List<String> options,
                                   Model model, int year, int wheelSize, double engineVolume) {
-        for (Factory factory : Factories.getInstance()) {
+        for (Factory factory : Factories.getFactories()) {
             if (factory.getModels().contains(model)) {
                 return factory.getMostSuitableCar(color, options, model, year, wheelSize, engineVolume);
             }

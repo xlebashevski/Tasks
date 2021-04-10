@@ -8,9 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ItalianFactory extends Factory {
-    ItalianFactory() {
-        createStorage();
-    }
 
     @Override
     protected Car createNewCar(String color, List<String> options, Model model, int year, int wheelSize, double engineVolume) {

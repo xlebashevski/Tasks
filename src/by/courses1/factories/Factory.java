@@ -18,7 +18,10 @@ public abstract class Factory implements IFactory {
     private IWheelSizeService wheelSizeService = new WheelSizeServiceImpl();
 
 
-    protected void createStorage() {
+    public void createStorage() {
+        if(storage!=null){
+            return;
+        }
         storage = new ArrayList<>();
         Random random = new Random();
         int modelLength = getModels().size();
@@ -40,7 +43,7 @@ public abstract class Factory implements IFactory {
     @Override
     public Car createCar(String color, List<String> options, Model model, int year, int wheelSize, double engineVolume) {
         for (Car car : storage) {
-            if (car.getColor().equals(color) && model == car.getModel() &&
+            if (car!=null && car.getColor().equals(color) && model == car.getModel() &&
                     year == car.getYear() && wheelSize == car.getWheelSize() &&
                     engineVolume == car.getEngineVolume() && checkListStringEquals(options, car.getOptions())) {
                 return car;
@@ -153,6 +156,9 @@ public abstract class Factory implements IFactory {
         }
     }
 
+    public List<Car> getStorage() {
+        return storage;
+    }
 
     public abstract List<Model> getModels();
 

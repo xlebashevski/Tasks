@@ -11,7 +11,7 @@ import java.util.List;
 public class CarValidator {
 
     public static String validateColor(Model model, String color) {
-        for (Factory factory : Factories.getInstance()) {
+        for (Factory factory : Factories.getFactories()) {
             if (factory.getModels().contains(model)) {
                 List<String> factoryColors = factory.getColors();
                 if (!factoryColors.contains(color)) {
@@ -36,7 +36,7 @@ public class CarValidator {
     }
 
     public static double validateEngineVolume(Model model, double engineVolume) {
-        for (Factory factory : Factories.getInstance()) {
+        for (Factory factory : Factories.getFactories()) {
             if (factory.getModels().contains(model)) {
                 List<Double> factoryEngineVolumes = factory.getEngineVolumes();
                 if (!factoryEngineVolumes.contains(engineVolume)) {
@@ -50,7 +50,7 @@ public class CarValidator {
     }
 
     public static int validateWheelSize(Model model, int wheelSize) {
-        for (Factory factory : Factories.getInstance()) {
+        for (Factory factory : Factories.getFactories()) {
             if (factory.getModels().contains(model)) {
                 List<Integer> factoryWheelSizes = factory.getWheelSizes();
                 if (!factoryWheelSizes.contains(wheelSize)) {
