@@ -19,7 +19,7 @@ public abstract class Factory implements IFactory {
 
 
     public void createStorage() {
-        if(storage!=null){
+        if (storage != null) {
             return;
         }
         storage = new ArrayList<>();
@@ -43,7 +43,7 @@ public abstract class Factory implements IFactory {
     @Override
     public Car createCar(String color, List<String> options, Model model, int year, int wheelSize, double engineVolume) {
         for (Car car : storage) {
-            if (car!=null && car.getColor().equals(color) && model == car.getModel() &&
+            if (car != null && car.getColor().equals(color) && model == car.getModel() &&
                     year == car.getYear() && wheelSize == car.getWheelSize() &&
                     engineVolume == car.getEngineVolume() && checkListStringEquals(options, car.getOptions())) {
                 return car;
