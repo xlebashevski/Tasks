@@ -11,7 +11,6 @@ public class Audi extends Car {
         super(color, options, year, wheelSize, engineVolume);
     }
 
-
     @Override
     public Model getModel() {
         return Model.AUDI;

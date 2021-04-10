@@ -1,21 +1,23 @@
 package by.courses1.cars;
 
+import by.courses1.cars.validator.CarValidator;
+
 import java.util.List;
 
 public abstract class Car {
+    private final int year;
+    private final double engineVolume;
     private String color;
     private List<String> options;
-    private final int year;
     private int wheelSize;
-    private final double engineVolume;
 
 
     public Car(String color, List<String> options, int year, int wheelSize, double engineVolume) {
-        this.color = color;
+        this.color = CarValidator.validateColor(getModel(), color);
         this.options = options;
-        this.year = year;
-        this.wheelSize = wheelSize;
-        this.engineVolume = engineVolume;
+        this.year = CarValidator.validateYear(year);
+        this.wheelSize = CarValidator.validateWheelSize(getModel(), wheelSize);
+        this.engineVolume = CarValidator.validateEngineVolume(getModel(), engineVolume);
     }
 
     public Car(String color, int year, int wheelSize, double engineVolume) {
@@ -31,34 +33,31 @@ public abstract class Car {
         System.out.println("Год " + year);
         System.out.println("Размер колёс " + wheelSize);
         System.out.println("Объём двигателя " + engineVolume);
-        System.out.println("Список опций: ");
-        for (String option : options) {
-            System.out.print(option + ", ");
+        if (options != null) {
+            System.out.println("Список опций: ");
+            for (String option : options) {
+                System.out.print(option + ", ");
+            }
+            System.out.println();
         }
         System.out.println();
-        System.out.println();
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
-    }
-
-    public void setWheelSize(int wheelSize) {
-        this.wheelSize = wheelSize;
     }
 
     public String getColor() {
         return color;
     }
 
+    public void setColor(String color) {
+        this.color = CarValidator.validateColor(getModel(), color);
+    }
+
     public List<String> getOptions() {
         return options;
     }
 
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
 
     public int getYear() {
         return year;
@@ -66,6 +65,10 @@ public abstract class Car {
 
     public int getWheelSize() {
         return wheelSize;
+    }
+
+    public void setWheelSize(int wheelSize) {
+        this.wheelSize = CarValidator.validateWheelSize(getModel(), wheelSize);
     }
 
     public double getEngineVolume() {

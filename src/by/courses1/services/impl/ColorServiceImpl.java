@@ -6,6 +6,8 @@ import by.courses1.services.ColorService;
 public class ColorServiceImpl extends ColorService {
     @Override
     public void changeColor(Car car, String color) {
-        car.setColor(color);
+        if (car != null) {
+            car.setColor(color);
+        }
     }
 }

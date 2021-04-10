@@ -1,15 +1,14 @@
-package by.courses1.factories.impl;
+package by.courses1.factories;
 
 import by.courses1.cars.Car;
 import by.courses1.cars.Model;
-import by.courses1.cars.impl.*;
-import by.courses1.factories.Factory;
+import by.courses1.cars.impl.Ferrari;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class ItalianFactory extends Factory {
-    public ItalianFactory() {
+    ItalianFactory() {
         createStorage();
     }
 

@@ -1,16 +1,18 @@
 package by.courses1.main;
 
-
 import by.courses1.cars.Car;
 import by.courses1.cars.Model;
+import by.courses1.cars.impl.Audi;
+import by.courses1.factories.Factories;
 import by.courses1.factories.Factory;
 import by.courses1.salon.Salon;
-import by.courses1.cars.impl.Bmw;
 
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        Audi audi = new Audi("Red", null, 2021, 18, 2.0);
+        audi.printCar();
         // Создание авто по заказу
         Salon salon = new Salon();
         Car carOrder = salon.createCarOrder("Blue", Arrays.asList("Cruize control"),
@@ -35,7 +37,7 @@ public class Main {
         }
 
         // Печать списков цветов, моедлей, объемов двигателей, размеров колес
-        for (Factory factory : salon.getFactories()) {
+        for (Factory factory : Factories.getInstance()) {
             System.out.println(factory.getClass());
             factory.printColors();
             factory.printModels();

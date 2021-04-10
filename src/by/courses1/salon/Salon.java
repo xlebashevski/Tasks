@@ -2,10 +2,8 @@ package by.courses1.salon;
 
 import by.courses1.cars.Car;
 import by.courses1.cars.Model;
+import by.courses1.factories.Factories;
 import by.courses1.factories.Factory;
-import by.courses1.factories.impl.FranceFactory;
-import by.courses1.factories.impl.GermanFactory;
-import by.courses1.factories.impl.ItalianFactory;
 import by.courses1.services.IColorService;
 import by.courses1.services.IOptionService;
 import by.courses1.services.IWheelSizeService;
@@ -13,25 +11,17 @@ import by.courses1.services.impl.ColorServiceImpl;
 import by.courses1.services.impl.OptionServiceImpl;
 import by.courses1.services.impl.WheelSizeServiceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Salon {
     private IColorService colorService = new ColorServiceImpl();
     private IOptionService optionService = new OptionServiceImpl();
     private IWheelSizeService wheelSizeService = new WheelSizeServiceImpl();
-    private List<Factory> factories;
 
-    public Salon() {
-        factories = new ArrayList<>();
-        factories.add(new FranceFactory());
-        factories.add(new GermanFactory());
-        factories.add(new ItalianFactory());
-    }
 
     public Car createCarOrder(String color, List<String> options,
                               Model model, int year, int wheelSize, double engineVolume) {
-        for (Factory factory : factories) {
+        for (Factory factory : Factories.getInstance()) {
             if (factory.getModels().contains(model)) {
                 return factory.createCar(color, options, model, year, wheelSize, engineVolume);
             }
@@ -39,8 +29,9 @@ public class Salon {
         return null;
     }
 
-    public Car getMostSuitableCar(String color, List<String> options, Model model, int year, int wheelSize, double engineVolume) {
-        for (Factory factory : factories) {
+    public Car getMostSuitableCar(String color, List<String> options,
+                                  Model model, int year, int wheelSize, double engineVolume) {
+        for (Factory factory : Factories.getInstance()) {
             if (factory.getModels().contains(model)) {
                 return factory.getMostSuitableCar(color, options, model, year, wheelSize, engineVolume);
             }
@@ -68,10 +59,6 @@ public class Salon {
             optionService.addOption(car, option);
         }
         return car;
-    }
-
-    public List<Factory> getFactories() {
-        return factories;
     }
 }
 
