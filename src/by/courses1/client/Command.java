@@ -1,14 +1,10 @@
 package by.courses1.client;
 
-import by.courses1.cars.Model;
-
-import java.util.Scanner;
-
 public class Command {
     private String description;
-    private Runnable action;
+    private CarAction action;
 
-    public Command(String description, Runnable action) {
+    public Command(String description, CarAction action) {
         this.description = description;
         this.action = action;
     }
@@ -17,7 +13,7 @@ public class Command {
         return description;
     }
 
-    public Runnable getAction() {
+    public CarAction getAction() {
         return action;
     }
 
